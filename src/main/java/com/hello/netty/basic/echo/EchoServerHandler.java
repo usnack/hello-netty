@@ -1,13 +1,13 @@
-package com.hello.netty;
+package com.hello.netty.basic.echo;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
+public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ((ByteBuf) msg).release();
+        ctx.write(msg);
+        ctx.flush();
     }
 
     @Override
